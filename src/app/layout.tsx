@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/api/query-client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased`}>{children}</body>
+      <QueryClientProvider client={queryClient}>
+        <body className={`${geistSans.variable} antialiased dark`}>
+          {children}
+        </body>
+      </QueryClientProvider>
     </html>
   );
 }
