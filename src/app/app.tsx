@@ -1,9 +1,10 @@
-import { LoginForm } from "@/widgets/login/ui/form";
+import { Providers } from "./providers/providers";
+import { AppRouter } from "./routers/app-router";
 
 export const App = () => {
   return (
-    <div>
-      <LoginForm />
-    </div>
+    <Providers>
+      <AppRouter />
+    </Providers>
   );
 };
