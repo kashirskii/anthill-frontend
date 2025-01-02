@@ -5,8 +5,8 @@ import { RegistrationFields, schema } from "../model/schema";
 import { RegistrationTitle } from "./title";
 
 import { Button, ErrorMessage, Input, Label } from "@ui";
-import { registration } from "@/entities/user/api/registration";
-import { AppDispatch } from "@/app/store";
+import { registration } from "@/entities/user";
+import { AppDispatch } from "@/app/stores";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -22,8 +22,7 @@ const RegistrationForm = () => {
   });
 
   const onSubmit: SubmitHandler<RegistrationFields> = async (data) => {
-    dispatch(registration(data));
-    return navigate("/profile");
+    dispatch(registration(data)).then(() => navigate("/profile"));
   };
 
   return (

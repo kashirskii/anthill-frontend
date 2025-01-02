@@ -1,14 +1,17 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { LoginFields, schema } from "../model/schema";
 import { LoginTitle } from "./title";
 
 import { Button, ErrorMessage, Input, Label } from "@ui";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/store";
-import { login } from "@/entities/user/api/login";
-import { useNavigate } from "react-router-dom";
+
+import { AppDispatch } from "@/app/stores";
+
+import { login } from "@/entities/user";
+
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,8 +25,7 @@ const LoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<LoginFields> = async (data) => {
-    dispatch(login(data));
-    return navigate("/profile");
+    dispatch(login(data)).then(() => navigate("/profile"));
   };
 
   return (

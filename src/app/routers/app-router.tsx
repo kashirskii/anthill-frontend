@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AuthPage from "@/pages/auth/ui/auth-page";
-import { Profile } from "@/pages/profile/ui/profile";
-import { AuthGuard } from "../guards/auth.guard";
+import { AuthPage } from "@/pages/auth";
+import { Profile } from "@/pages/profile";
+import { AuthGuard } from "@/app/guards";
 
 export const AppRouter = () => {
   return (
@@ -10,7 +10,7 @@ export const AppRouter = () => {
         <Route index element={<AuthPage />} />
 
         <Route element={<AuthGuard />}>
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:id" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

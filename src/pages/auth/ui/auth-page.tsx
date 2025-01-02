@@ -1,24 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
-import { RegistrationForm } from "@/features/registration/ui/form";
-import { LoginForm } from "@/features/login/ui/form";
+import { LoginForm } from "@/features/login";
+import { RegistrationForm } from "@/features/registration";
 
 import { Button } from "@ui";
-import { useAppSelector } from "@/app/store";
-import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "@/app/stores";
 
-export default function AuthPage() {
+export function AuthPage() {
   const [authMode, setAuthMode] = useState<"login" | "registration">(
     "registration"
   );
-  const { isAuthorized } = useAppSelector((state) => state.user);
+  const { isAuthorized, id } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
 
   const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (isAuthorized) {
-      navigate("/profile");
+      navigate(`/profile/${id}`);
     }
 
     isFirstRender.current = false;

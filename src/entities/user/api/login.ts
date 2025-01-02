@@ -1,7 +1,8 @@
-import { AxiosError, AxiosResponse, isAxiosError } from "axios";
-import { AuthError, AuthSuccess, LoginRequest } from "@/shared/types/auth";
-import { publicInstance } from "@/shared/api/public-instance";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { AxiosError, AxiosResponse, isAxiosError } from "axios";
+
+import { publicInstance } from "@/shared/api/public-instance";
+import { AuthError, AuthSuccess, LoginRequest } from "@/shared/types/auth";
 
 export const login = createAsyncThunk(
   "user/login",
